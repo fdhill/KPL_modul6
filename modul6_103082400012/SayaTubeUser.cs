@@ -12,6 +12,15 @@ namespace modul6_103082400012
 
         public SayaTubeUser(string username)
         {
+            if (username == null)
+            {
+                throw new ArgumentNullException("Username tidak boleh kosong");
+            }
+            else if (username.Length > 100)
+            {
+                throw new ArgumentException("Maksimal panjang username 100 karakter");
+            }
+
             this.Username = username;
             this.stv = new List<SayaTubeVideo>();
         }
@@ -26,6 +35,14 @@ namespace modul6_103082400012
         }
         public void addVideo(SayaTubeVideo video)
         {
+            if (video == null)
+            {
+                throw new ArgumentNullException("Video tidak boleh null");
+            }
+            else if (video.playCount >= int.MaxValue)
+            {
+                throw new ArgumentException("Play count tidak boleh melebihi batas maksimal");
+            }
             stv.Add(video);
         }
         public void PrintAllVideoPlayCount()
